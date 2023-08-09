@@ -1,0 +1,2086 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Farmee</title>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+	
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+	  -webkit-appearance: none;
+	  margin: 0;
+	}
+
+	input[type=number] {
+	  -moz-appearance: textfield;
+	}
+
+	* {
+		user-select: none;
+	}
+	body{
+		margin: 0;
+		touch-action: none;
+		color: white;
+		font-family: Montserrat;
+		background: #111;
+	}
+	.butSec{	
+		position: absolute;
+		translate: -50% -50%;
+	}
+	.butSec button{
+		background: #3e3;
+		border: 0;
+		color: white;
+		text-shadow: 0vh 0.3vh 0.5vh black;
+		font-family: Montserrat;
+		font-size: 3.5vh;
+		font-weight: 700;
+		padding: 2vh;
+		border-radius: 3vh;
+		box-shadow: 0vh 0.5vh 1vh #222;
+	}
+	.butSec button:active{
+		scale: 80%;
+	}
+	.butSec > *{
+		position: relative;
+		margin-top: 3vh;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#introFrame {
+		background: #222;
+		z-index: 3;
+		width: 100%;
+		height: 100%;
+		position: fixed;
+	}
+	#div1 {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		display: flex;
+		margin-left: -110;
+		animation: div1 7s;
+		opacity: 0;
+	}
+	@keyframes div1 {
+		0%{opacity: 0}
+		22%{opacity: 0}
+		27%{opacity: 1}
+		63%{opacity: 1}
+		75%{opacity: 0}
+		100%{opacity: 0}
+	}
+	#div2 {
+		background: #222;
+		padding-left: 200;
+	}
+	
+	#img1{
+		animation: img1 1.5s 1.5s;
+		margin-right: -10px;
+		height: 40;
+	}
+	@keyframes img1{
+		0%{transform: rotate(-360deg); height: 20}
+		33%{transform: rotate(0deg); }
+		100%{height: 40}
+	}
+	#img2 {
+		margin-left: 5;
+		animation: img2 1.5s 1.5s;
+		z-index: -1;
+		height: 38;
+	}
+	@keyframes img2 {
+		0%{margin-left: -160; height: 20}
+		70%{margin-left: -160; height: 20}
+		100%{margin-left: 5; height: 38}
+	}
+	#frame3 {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		background: black;
+		opacity: 0;
+	}
+	#frame4 img, #gridSale img {
+		position: fixed;
+		width: 100px;
+		transform: translate(-50%, -50%);
+	}
+	#frame4 div {
+		position: fixed; 
+		transform: scale(0.76, 0.4) rotate(45deg);
+	}
+	#frame4 div img{
+		rotate: -45deg;
+		pointer-events: none;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+	#frame4 div .soil{
+		height: 112%;
+		scale: 140% 235%;
+		translate: 132% 32%;
+	}
+	#frame4 div .woodSign {
+		filter: brightness(80%);
+		scale: 60% 100%;
+		translate: 0% -45%;		
+	}
+	#frame4 div .icon {
+		filter: brightness(70%) sepia(50%); 
+		scale: 22% 45%;
+		translate: -48% -68%;
+	}
+	#frame4 div .plant {
+		scale: 100% 350%;
+		translate: 30% -30%;
+		display: none;
+	}
+	#frame4 {
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+	#farmMap {
+		position: fixed;
+	}
+	#farmMap img{
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	#gridSale {
+		position: fixed;
+	}
+	#gui {
+		position: fixed;
+	}
+	#magic, #money {
+		position: fixed;
+		top: 2vh;
+		transition: top 0.5s;
+	}
+	#magic {right: 1vh}
+	#money {right: 35vh}
+	#magic div, #money div {
+		width: 28vh;
+		height: 4vh;
+		background: #614b2c;
+		border-radius: 2vh;
+		border: 0.8vh solid #af9b60;
+	}
+	#magic img, #money img {
+		height: 8vh;
+		top: 50%;
+		left: 0%;
+		transform: translate(-50%,-50%);
+		position: absolute;
+		filter: drop-shadow(1px 1px 1px black);
+	}	
+	#magicText, #moneyText {
+		position: absolute;
+		font-size: 3vh;
+		margin: 0;
+		right: 10%;
+		font-weight: 700;
+		text-shadow: 0vh 0.3vh 0.3vh black;
+	}
+	#goBack {
+		width: 40;
+		margin-left: 10;
+		margin-top: 10;
+		display: none;
+	}
+	#plantSeed {
+		position: fixed;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 60vh;
+		height: 80vh;
+		background: #431;
+		left: 50;
+		border: 5px solid #210;
+		border-radius: 20px;
+		transition: top 0.5s;
+	}
+	#slotSeed{
+		position: absolute;
+		left: 50%;
+		width: 90%;
+		height: 90%;
+		transform: translate(-50%, -50%);
+		top: 50%;
+		overflow-y: auto;
+	}
+	#slotSeed div{
+		width: 33%;
+		height: 0;
+		padding-bottom: 33%;
+		position: relative;
+		float: left;
+	}
+	#slotSeed div * {
+		position: absolute;
+	}
+	#slotSeed img{
+		width: 90%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%); 
+	}
+	#slotSeed p {
+		font-size: 7vh;
+		color: #0e0;
+		right:0;
+		text-shadow: 0px 0px 1vh black;
+		font-weight:800;
+	}
+	#full {
+		position: fixed;
+		top: 50%;
+		left: 30%
+	}
+	#items {
+		position: fixed;
+		width: 95vh;
+		height: 95vh;
+		top: 55%;
+		right: -1500px;
+		transform: translateY(-50%);
+		border-radius: 50%;
+		transition: right 0.5s;
+	}
+	#items div:nth-child(n+2){
+		position: absolute; 
+		background: #db7; 
+		border-radius: 50%; 
+		transform: translate(-600%, -50%);
+		width: 18vh;
+		height: 18vh;
+	}
+	#items div:first-child {
+		position: absolute;
+		border: 1vh solid #05f;
+		border-radius: 50%;
+		transform: translate(-69%, -50%);
+		width: 19vh;
+		height: 19vh;
+	}
+	#items img {
+		position: absolute;
+		top: 40%;
+		left: 40%;
+		transform: translate(-50%, -50%);
+		filter: drop-shadow(2px 2px 1px gray);
+		width: 100%;
+		height: 100%;
+	}
+	#items div p {
+		position: absolute;
+		text-shadow: 0vh 0.3vh 0.5vh black;
+		font-size: 7vh;
+		right: 0;
+		font-weight: 700;
+	}
+	#soilLabel {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -100%);
+		width: 120;
+		height: 140;
+		font-family: sans-serif;
+		font-weight: bold;
+		text-shadow: 0px 2px 2px black;
+		font-size: 80%;
+		color: #ddd;
+		pointer-events: none;
+		display: none;
+	}
+	#soilLabel img{
+		position: absolute;
+	}
+	#soilLabel img:nth-child(2), #seedDamage {
+		height: 100%;
+		width:100%;
+		position: absolute;
+	}
+	#seedDamage {
+		width: 50%;
+		object-fit: cover;
+		object-position: 0% 50%;
+	}
+	#noWater {
+		position: absolute;
+		left: 10%;
+		top: 18%;
+		width: 20;
+	}
+	#soilLabel div{
+		position: absolute;
+		display: flex;
+		left: 55%;
+		top: 40%;
+		transform: translate(-50%,-50%)
+	}
+	#soilLabel div div{
+		position: static;
+		background: #ac0;
+		height: 20;
+		width: 50;
+		transform: translate(0%,0%);
+		margin: 10;
+		margin-left: 5;
+		border-radius: 12px;
+		filter: drop-shadow(0px 2px black);
+	}
+	#soilLabel div div img{
+		width: 30;
+		height: 30;
+		position: static;
+		filter: drop-shadow(1px 1px 1px black);
+		margin-top: -5
+	}
+	#priceFinish {
+		margin: 1px;
+		margin-left: 5
+	}
+	#ferShine {
+		width: 180%;
+		top: 35%;
+		left: 50%;
+		animation: ferShine 8s infinite linear;
+	}
+	@keyframes ferShine {
+		0% {transform: translate(-50%, -50%) rotate(0deg)}
+		100% {transform: translate(-50%, -50%) rotate(360deg)}
+	}
+	#timeSeed {
+		position: absolute;
+		top: 10%;
+		right: 10%;
+	}
+	#footer {
+		position: fixed;
+		display: flex;
+		right: 7;
+		bottom: 3vh;
+		transition: bottom 0.5s;
+	}
+	#footer div {
+		position: relative;
+		width: 10vh;
+		height: 10vh;
+		background: #fea;
+		border-radius: 50%;
+		margin-right: 3vh;
+	}
+	#footer div:active {
+		transform: scale(80%);
+	}
+	#footer img {
+		width: 120%;
+		height: 120%;
+		margin: -20%
+	}
+	#settingsPrevent {
+		background: rgba(0,0,0,0.3);
+		width: 100%; 
+		height: 100%; 
+		position: fixed; 
+		display: none;
+	}
+	#settings {
+		position: absolute;
+		top: 250%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 120vh;
+		height: 80vh;
+		background: #431;
+		border: 7px solid #fe7;
+		border-radius: 20px;
+		font-family: "DM Sans";
+	}
+	#settingsTitle {
+		font-weight: 700;
+		padding: 0.7vh;
+		margin-left: 50%;
+		margin-top: -2%;
+		transform: translateX(-50%);
+		background: #431;
+		width: 30vh;
+		font-size: 3vh;
+		text-align: center;
+		border: 0.5vh solid #fe7;
+		border-radius: 3vh;
+		box-shadow: 0px 0px 5px black;
+	}
+	#settings div:nth-child(2){
+		height: 10%;
+		display:flex;
+		align-items: center;
+		margin-top: -2%;
+		margin-left: 3%;
+		width: max-content;
+		font-size: 3vh;
+	}
+	#settings div:nth-child(2) img{
+		height: 60%;
+	}
+
+	#settings div:nth-child(3) {
+		position: absolute;
+		width: max-content;
+		left:10;		
+	}
+	#settings div:nth-child(3) div{
+		margin-top: 10;
+		font-size: 80%;
+		margin-left: 20;
+	}
+	#settings div:nth-child(4) {
+		position: absolute;
+		top: 20;
+		left: 52%;
+		width:46%;
+	}
+	#settings div:nth-child(4) p:nth-child(2){
+		color: gray;
+		font-size: 70%;
+		text-align: center;
+		margin-top: -15;
+	}
+	#settings div:nth-child(4) p:nth-child(n+3){
+		text-align: center;
+		background: #431;
+		border: 1px solid #fe7;
+		margin: auto;
+		margin-top: 3;
+		width: max-content;
+		padding: 2;
+		width: 80;
+	}
+	#settings div:nth-child(4) p:nth-child(n+3):active{
+		transform: scale(80%)
+	}
+	#settings div:nth-child(5){
+		width: 1;
+		height: 60%;
+		background: #fe7;
+		margin-left: 50%;
+	}
+	#settings button:nth-child(6){
+		margin-left: 50%;
+		margin-top: 20;
+		transform: translateX(-50%);
+		border: 1px solid #fe7;
+		background: #431;
+		color: white;
+		font-family: DM Sans;
+		border-radius: 5px;
+	}
+	#settings button:nth-child(6):active{
+		transform: translateX(-50%) scale(90%);
+	}
+	#nameDiv {
+		position: fixed;
+		background: rgba(0,0,0,0.3);
+		width: 100%;
+		height: 100%;
+		display: none;
+	}
+	#nameDiv div {
+		position: absolute;
+		top:50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		background: #431;
+		border: 1px solid #fe7;
+		width: 50%;
+		height: 100;
+	}
+	#nameDiv div * {
+		margin-left: 50%;
+		transform:translateX(-50%);
+	}
+	#mainStock{
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0.3);
+		display: none;
+	}
+	#mainStock > div{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		height: 80vh;
+		width: 120vh;
+		background: #431;
+		border: 1vh solid #210;
+		border-radius: 3vh;
+		transform: translate(-50%,-50%);
+	}
+	#mainStock > div > p:nth-child(1) {
+		position: absolute;
+		font-size: 5vh;
+		left: 50%;
+		top: -7%;
+		background: #210;
+		font-weight: 700;
+		width: 40vh;
+		text-align: center;
+		padding: 1vh;
+		border-radius: 2vh;
+		transform: translate(-50%,-50%);
+	}
+	#stockSize{
+		position: absolute;
+		left: 25%;
+		width: 40vh;
+		height: 5vh;
+		top: 10%;
+		box-shadow: 0vh 1vh 1vh black;
+		transform: translate(-50%,-50%);
+	}
+	#stockSize div:nth-child(1){
+		position: absolute;
+		transform: translate(0%, 0%);
+		width: 100%;
+		height: 100%;
+		background: white;
+		border-radius: 1vh;
+	}
+	#stockSize div:nth-child(2){
+		position: absolute;
+		transform: translate(0%, 0%);
+		height: 100%;
+		background: #de5;
+		border-radius: 1vh;
+	}
+	#stockSize p:nth-child(3){
+		position: absolute;
+		text-align: center;
+		width: 100%;
+		font-size: 2.5vh;
+		font-weight: 700;
+		text-shadow: 0px 0.2vh 0.5vh #555;
+		color: #33f;
+		margin-top: 1vh;
+	}
+	#stockSize p:nth-child(4){
+		position: absolute;
+		font-size: 4vh;
+		font-weight: 700;
+		color: #770;
+		right: -5%;
+		background: gold;
+		width: 5vh;
+		height: 5vh;
+		text-align: center;
+		border-radius: 50%;
+		top: -77%;
+		box-shadow: 0vh 1vh 1vh black;
+	}
+	#mainStock select{
+		position: absolute;
+		direction: rtl;
+		text-align: left;
+		background: #210;
+		font-size: 2.4vh;
+		color: white;
+		border: 0;
+		font-family: Montserrat;
+		padding: 0.7%;
+		left: 60%;
+		top: 7%;
+		font-weight: 700;
+	}
+	#stockScreen {
+		position: absolute;
+		background: #210;
+		width: 90%;
+		height: 67%;
+		transform: translate(-50%, -50%);
+		left: 50%;
+		top: 55%;
+		display: inline;
+		overflow: auto;
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+	#stockScreen::-webkit-scrollbar {
+  		display: none;
+	}
+	#stockScreen .line {
+		width:80%;
+		margin-left: 10%;
+		height: 0.3vh;
+		background: #531;
+		position: static;
+		float: left;
+		margin: 3vh 0 3vh 10%;
+	}
+	#stockScreen .con {
+		position: relative;
+		width: 25%;
+		height: 0;
+		padding-bottom: 25%;
+		float: left;
+	}
+	#stockScreen .con:active{
+		transform: scale(80%);
+	}
+	#stockScreen .con img{
+		margin: 50%;
+		transform: translate(-50%,-50%);
+		width: 70%;
+		position: absolute;
+	}
+	#stockScreen .con p {
+		position: absolute;
+		margin: 64%;
+		font-size: 7vh;
+		font-weight: 600;
+		color: #0f0;
+		text-shadow: 0vh 0.3vh 1vh black;
+	}
+	#stockFrame {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0.3);
+		display: none;
+	}
+	#stockFrame > div {
+		position: relative;
+		top: 50%;
+		left: 50%;
+		height: 60vh;
+		width: 100vh;
+		background: #431;
+		transform: translate(-50%, -50%);
+		border: 2vh solid #210;
+		border-radius: 3vh;
+	}
+	#stockFrame > div > p:nth-child(2), #stockFrame > div > p:nth-child(3), #stockFrame > div > p:nth-child(4) {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		font-size: 3vh;
+		text-shadow: 0vh 0.3vh 0.3vh black;
+		font-weight: 900;
+	}
+	#stockFrame > div > p:nth-child(2){
+		top: -3%;
+		color: #bbb;
+		font-weight: 300;
+	}
+	#stockFrame > div > p:nth-child(3){
+		top: -1%;
+		font-size: 5vh;
+		color: #7e7;
+	}
+	#stockFrame > div > p:nth-child(4){
+		top: 12%
+	}
+	#stockFrame > div > img {
+		height: 35vh;
+		width: 35vh;
+		background: radial-gradient(#fff, #ccc);
+		margin-top: 35%;
+		margin-left: 25%;
+		padding: 1vh;
+		transform: translate(-50%,-50%);
+	}
+	#stockFrame div > .butSec {
+		top: 55%;
+		left: 73%;
+	}
+	#stockFrame div > .butSec button{
+		width: max-content;
+		height: max-content;
+	}
+	#stockFrame div > .butSec button:has(img){
+		background: red;
+		position: relative;
+	}
+	#stockFrame div > .butSec button img{
+		width: 7vh;
+		height: 7vh;
+		filter: drop-shadow(0px 0.5vh 0.5vh #333);
+	}
+	#stockFrame div > .butSec div div button{
+		background: transparent;
+		padding: 0;
+		box-shadow: 0px 0px 0px transparent;
+	}
+	#stockFrame div > .butSec > div{
+		margin-left: -30%;
+	}
+ 	#stockFrame div > .butSec div > div{
+		background: red;
+		height: max-content;
+		position: absolute;
+		top: 50%;
+		left: 19%;
+		padding: 1vh 1vh 1vh 5vh;
+		translate: 0% -50%;
+		border-radius: 2vh;
+		width: max-content;
+	}
+	#stockFrame div > .butSec div > div *{
+		margin-left: 2vh;
+		margin-right: 2vh;
+		font-size: 6vh;
+	}
+	#stockFrame div > input {
+		background: #210;
+		border: 0;
+		color: white;
+		width: 14vh;
+		height: 7vh;
+		font-family: Montserrat;
+		text-align: center;
+		font-weight: 700;
+		font-size: 4vh;
+	}
+	#reminder, #deleteSure {
+		position:fixed;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0.5);
+		top: 0;
+		display: none;
+	}
+	#reminder div {
+		position: absolute;
+		width: 70vh;
+		height: max-content;
+		background: #431;
+		border: 2vh solid #210;
+		border-radius: 5vh;
+		top: 50%;
+		left: 50%;
+		translate: -50% -50%;
+		text-align: center;
+		padding: 5vh;
+
+	}
+	#reminderText {
+		margin: 0;
+		font-weight: 800;
+		font-size: 4vh;
+		text-shadow: 0vh 0.5vh 0.5vh black;
+	}
+	#deleteSure > div {
+		height: 30vh;
+		width: 68vh;
+		background: #431;
+		top: 50%;
+		left: 50%;
+		translate: -50% -50%;
+		margin: auto;
+		text-align: center;
+		font-size: 4vh;
+		font-weight: 700;
+		padding: 3vh;
+		border: 2vh solid #210;
+		border-radius: 5vh;
+	}
+	#deleteSure p, #deleteSure div:has(button) {
+		position: absolute;
+	}
+	#deleteSure p {
+		width: 90%;
+	}
+	#deleteSure .butSec{
+		top: 100%;
+		left: 50%;
+		translate: -50% -50%;
+		display:flex;
+	}
+	#deleteSure .butSec button{
+		font-size: 150%;
+		margin-left: 5vh;
+		margin-right: 5vh;
+		width: 20vh;
+	}
+	#deleteSure .butSec button:nth-child(2){
+		background: red;
+	}
+	#convertSeed {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0.3);
+		display: none;
+	}
+	#convertSeed > div{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		translate: -50% -50%;
+		width: 50vh;
+		height: 39vh;
+		background: #431;
+		border: 1vh solid #210;
+		border-radius: 3vh;
+	}
+	#convertSeed * {
+		position: absolute;
+	}
+	#convertSeed p{
+		text-shadow: 0vh 0.3vh 0.3vh black;
+		font-weight: 700;
+		margin: 0;
+	}
+	#convertSeed div > p:nth-child(1){
+		left: 10%;
+		font-size: 10vh;
+	}
+	#convertSeed p:nth-child(4){
+		left: 75%;
+		font-size: 10vh;
+	}
+	#convertSeed p:nth-child(5){
+		top: 15%;
+		left: 35%;
+		font-size: 20vh;
+	}
+	#convertSeed p:nth-child(6){
+		top: 45%;
+		left: 60%;
+		font-size: 3vh;
+	}
+	#convertSeed input {
+		background: #210;
+		border: 0;
+		color: white;
+		width: 14vh;
+		height: 7vh;
+		font-family: Montserrat;
+		text-align: center;
+		font-weight: 700;
+		font-size: 4vh;
+		top: 7%;
+		left: 25%;
+	}
+	#convertSeed img:nth-child(3) {
+		height: 20%;
+		left: 55%;
+		top: 5%;
+	}
+	#convertSeed div div:nth-child(7) {
+		position: absolute;
+		top: 78%;
+		left: 50%;
+		translate: -50% 0%;
+		height: max-content;
+		width: max-content;
+		display: flex;
+		align-items: center;
+	}
+	#convertSeed div div:nth-child(7) * {
+		position: static;
+		font-size: 4vh;
+	}
+	#convertSeed img:nth-child(2) {
+		height: 5vh;
+	}
+	#convertSeed .butSec{
+		top: 100%;
+		left: 50%;
+	}
+	#convertSeed .butSec button{
+		position: static;
+	}
+	#market {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0.7);
+		scale: 0%;
+		opacity: 0;
+		transition: scale 0.2s, opacity 0.2s;
+	}
+	#market div:nth-child(1) .butSec {
+		left: 50%;
+		top: 10%;
+		background: red; 
+		scale: 2;
+	}
+	#market div:nth-child(1) .butSec button {
+		padding-left: 10%;
+		padding-right: 10%
+	}
+
+	.closeButton {
+		position: absolute;
+		margin: 0;
+		top: 0%;
+		left: 100%;
+		transform: translate(-50%,-50%);
+		background: red;
+		text-align: center;
+		vertical-align: middle;
+		line-height: 6vh;
+		width: 7vh;
+		height: 7vh;
+		font-size: 5vh;
+		border-radius: 50%;
+		font-weight:900;
+		text-shadow: 0px 1px 2px black;
+	}
+	.closeButton:active {
+		scale: 80%;
+	}
+</style>
+
+<body>	
+
+	<div id="farmMap">
+		<img id="land" src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/maps/farm_land.png">
+		<img id="shadow" src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/maps/map_shadow.png">
+		<img id="tree" src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/maps/farm_tree.png">
+	</div>
+
+	<div id="gridSale"></div>
+
+	<div id="frame3"></div>
+
+	<div id="frame4"></div>
+	
+	<div id="market">
+		<div>
+			<div class="butSec">
+				<button>Deliver</button>
+			</div>
+		</div>
+		
+		<div>
+		
+		</div>
+		
+		<div>
+		
+		</div>
+	</div>
+
+	<div id="gui">
+		<div id="magic">
+			<div>
+				<p id="magicText"></p>
+				<img src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/earn/magic.png">
+			</div>
+		</div>
+		<div id="money">
+			<div>
+				<p id="moneyText"></p>
+				<img src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/earn/money.png">
+			</div>
+		</div>
+		<button id="full">Fullscreen</button>
+		
+		<img id="goBack"src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/supporter/go_back.png">
+		<div id="plantSeed">
+			<div id="slotSeed"></div>
+		</div>
+		<div id="items">
+			<div></div>
+			<div><img><p id="waterText"></p></div>
+			<div><img><p id="ferText">90</p></div>
+			<div><img><p id="pestText">70</p></div>
+			<div><img></div>
+			<div><img></div>
+		</div>
+		<div id="soilLabel">
+			<img id="ferShine" src="">
+			<img src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/supporter/soil_label.png">
+			<img id="seedDamage" src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/supporter/seed_damage.png">
+			<img id="noWater" src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/supporter/no_water.png">
+			<div>
+				<p>Finish</p>
+				<div>
+					<img src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/earn/magic.png">
+					<p id="priceFinish">5</p>
+				</div>
+			</div>
+			<p id="timeSeed"></p>
+		</div>
+		<div id="footer">
+			<div id="taskButton"><img src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/footers/task.png"></div>
+			<div id="stockButton"><img src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/footers/inventory.png"></div>
+			<div id="albumButton"><img src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/footers/album.png"></div>
+			<div id="settingsButton"><img src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/footers/settings.png"></div>
+			<div id="helpButton"><img src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/footers/help.png"></div>
+		</div>
+
+		<div id="settingsPrevent">
+			<div id="settings">
+				<p id="settingsTitle">SETTINGS</p>
+				<div>
+					<p id="gamersName">Alfred &nbsp;</p>
+					<img id="editName" src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/supporter/edit_icon.png">
+				</div>
+				<div>
+					<h5>Audio</h5>
+					<div>Music<input id="music" type="range"></div>
+					<div style="left: 0">Sound<input id="sound" type="range"></div>
+					<div></div>
+				</div>
+				<div>
+					<h5>Gamer's Progress</h5>
+					<p id="identity">ID: 230724130234</p>
+					<p id="export">Export</p>
+					<p>Import</p>
+					<p>New</p>
+				</div>
+				<div>
+				
+				</div>
+				<button id="exitFull">Exit Fullscreen</button>
+				<p id="settingsClose" class="closeButton">x</p>
+				
+			</div>
+		</div>
+
+		<div id="nameDiv">
+			<div>
+				<p>Your name is</p>
+				<input id="name" type="text" value="Farmee">
+				<p style="font-size: 30%; color: gray">*Only letters are valid</p>
+				<p class="closeButton">x</p>
+			</div>
+		</div>
+		
+		<div id="mainStock">
+			<div>
+				<p>STOCKS</p>
+				<div id="stockSize">
+					<div></div>
+					<div></div>
+					<p id="stockStorage"></p>
+					<p>+</p>
+				</div>
+				<select>
+					<option>Crops</option>
+					<option>Seeds</option>
+					<option>Livestock Products</option>
+				</select>
+				<div id="stockScreen"></div>
+				<p class="closeButton" id="stockClose">x</p>
+			</div>
+		</div>
+		
+		<div id="stockFrame">
+			<div>
+				<p class="closeButton">x</p>
+				<p></p>
+				<p></p>
+				<p>Quantity: 3</p>
+				<img src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/grids/soil_loam.png">
+				<div class="butSec">
+					<button>View on Album</button>
+					<div>
+						<div>
+							<button class="decrease">-</button>
+							<input class="inputNum" type="number">
+							<button class="increase">+</button>
+						</div>
+						<button id="trashButton"><img src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/supporter/trash_icon.png"></button>
+					</div>
+				</div>
+			</div>
+			<p style="display: none"></p>
+		</div>
+		
+		<div id="convertSeed">
+			<div>
+				<p class="decrease">-</p>
+				<input class="inputNum" type="number">
+				<img src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/crops/wheat.png">
+				<p class="increase">+</p>
+				<p>⇩</p>
+				<p name="times"></p>
+				<div>
+					<p name="result"></p>
+					<img src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/supporter/buto.png">
+				</div>
+				<div class="butSec">
+					<button>Convert</button>
+				</div>
+				<p class="closeButton">x</p>
+			</div>
+		</div>
+		
+		<div id="deleteSure">
+			<div>
+				<p>Are you sure you want to discard 3 wheat crops?</p>
+				<div class="butSec">
+					<button>No</button>
+					<button>Yes</button>
+				</div>
+			</div>
+		</div>
+		
+		<div id="reminder">
+			<div>
+				<p id="reminderText"></p>
+				<p class="closeButton">x</div>
+			</div>
+		</div>
+
+	</div>
+
+	<p id="kunsul" style="pointer-events: none; opacity: 0.3; position:fixed; z-index: 10; font-family: sans-serif; font-size: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 20%; height: 20%; overflow-y: auto">Console <br>Log</p>
+	<div>
+		<audio id="myAudio" class="sound">
+			<source src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/audios/sounds/fertilized.wav" type="audio/wav">
+			Your browser does not support the audio element.
+		</audio>
+		<audio id="discard" class="sound">
+			<source src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/audios/sounds/discard.mp3" type="audio/mp3">
+			Your browser does not support the audio element.
+		</audio>
+		<audio id="watering" class="sound">
+			<source src="https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/audios/sounds/watering.mp3" type="audio/mp3">
+		</audio>
+	</div>
+
+	<div id="introFrame">
+		<div id="div1">
+			<div id="div2">
+				<img id="img1" src="https://raw.githubusercontent.com/JayveeErandio/Demac/main/Images/logo_D.png">
+			</div>
+			<img id="img2" src="https://raw.githubusercontent.com/JayveeErandio/Demac/main/Images/logo_EMAC.png">
+		</div>
+	</div>
+</body>
+
+<script>
+
+	document.body.oncontextmenu = function(ev){ev.preventDefault()};
+	const rad = Math.PI/180;
+	var midW = window.innerWidth/2;
+	var midH = window.innerHeight/2; 
+	var time = (new Date()).getTime();
+	const name = document.getElementById("name");
+	
+	//     S O U R C E S    O F     M E D I A S
+	const imgSrc = "https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/";
+	const audSrc = "https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/audios/";
+	const landType = [
+		[
+			imgSrc + "grids/soil_loam.png"
+		]
+	];
+	const stockAssets = {
+		crops: [
+			{
+				name: "wheat",
+				src: imgSrc + "crops/wheat.png",
+				growth: 10,
+				toSeed: 3
+			},
+			{
+				name: "tomato",
+				src: imgSrc + "crops/tomato.png",
+				growth: 45,
+				toSeed: 4
+			},
+			{
+				name: "corn",
+				src: imgSrc + "crops/corn.png",
+				growth: 120,
+				toSeed: 7
+			}
+		],
+		soil: [
+			{
+				name: "Loam Soil",
+				src: imgSrc + "grids/soil_loam.png"
+			}
+		]
+	}
+	const itemsType = [
+		imgSrc + "items/water_can.png",
+		[
+			{
+				src: imgSrc + "items/fertilizer/phosphate.png",
+				boost: 2
+			},
+			{
+				src: imgSrc + "items/fertilizer/potassium.png",
+				boost: 4
+			},
+			{
+				src: imgSrc + "items/fertilizer/nitrogen.png",
+				boost: 8,
+				reward: 2
+			},
+			{
+				src: imgSrc + "items/fertilizer/techno.png",
+				boost: 15,
+			}
+		],
+		imgSrc + "items/pesticide.png",
+		imgSrc + "items/destroy.png",
+		imgSrc + "items/get.png"
+	];
+	const labelShine = [
+		"https://raw.githubusercontent.com/JayveeErandio/Jeyba/main/farmee/images/supporter/shine/brown.png"
+	];
+	
+	const scripts = [];
+
+	var newLand = {
+		small: [[1,-1,0, 0, {}], [0, -1, 0, 0, {}], [1, 0, 0, 0, {}], [0, 0, 0, 0, {}]], 
+		big: [[0, 0]],
+		out: [[0, -1], [1, 0], [0, 1], [-1, 0], ]
+	};
+	var newStocks = [[1, 0, 3],[0, 0, 4], [0, 1, 5], [0, 2, 2]];
+	newStocks.sort();
+	var selectPos = [-238, -160, -82];
+	var woodSignSrc = imgSrc + "supporter/wood_sign.png";
+
+	//     N E W     G A M E R ' S    S T O R E D    D A T A
+	data = {
+		id: time,
+		name: "Farmee",
+		nav: [0, 0, 1],
+		stock: {
+			crops: [],
+			seed: [[0, 4]],
+			soil: [],
+			path: [],
+			livestock: [],
+			livestockProduct: [],
+			meat: [],
+			barn: [],
+			shelter: [],
+		},
+		land: {
+			sold: [[1, -1],[0,-1],[1, 0], [0,0]],
+			sale: [[2,-2],[1,-2],[2,-1],[0,-2],[2,0],[-1,-2],[2,1],[-1,-1],[1,1],[-1,0],[0,1],[-1,1]],
+			tile: [
+				[1,-2,0,0,{}], 
+				[0, -1, 0, 0, {}], 
+				[1, 0, 0, 0, {}], 
+				[0, 0, 0, 0, {}], 
+			]
+		},
+		earn: {
+			magic: 5,
+			money: 30,
+			water: 12,
+			fer: [2, 0, 0, 0],
+			pest: 0,
+			stock: [0, 10]
+		},
+		market: {
+			maxCrate: 5,
+			speed: 60,
+			crate: [
+				[
+					0,0,5,10,
+					{
+						isDelivered: false,
+						isBought: false,
+						salary: 0
+					}
+				]
+			]
+		},
+		act: {
+			whatFer: 0,
+			newGame: true
+		}
+	};
+
+	//     G A M E R ' S   T E M P O R A R Y   D A T A
+	cache = {
+		isSoil: false,
+		isSeed: false,
+		whatSeed: null,
+		place: 0,
+		whatItem: null,
+		whatSoil: null
+	}
+	
+	
+	var dataNav = [0, 0, 1];
+	var dataAccom = {
+		water: 20
+	};
+	var dataDone = {
+		money: 30,
+		water: 15,
+		magic: 5,
+		typeFer: 0
+	};
+	var dataAct = {
+		isSoil: false,
+		isSeed: false, 
+		whatSeed: null,
+		place: 0,
+		whatItem: null,
+		whatSoil: null
+	};
+	var dataStocks = [];
+
+	//     E L E M E N T S '    T R I G G E R    E V E N T S
+	goBack.onclick = function(){
+		cache.isSoil = false;
+		cache.whatSeed = null;
+		cache.whatItem = null;
+		soilLabel.style.display = "none";
+		frame3.style.opacity = 0;
+		magic.style.top = money.style.top = "default";
+		items.style.right = "-1500px";
+		footer.style.bottom = "3vh";
+		
+		market.style.scale = "0%";
+		market.style.opacity = "0";
+		goBack.style.display = "none";
+	};
+	settingsButton.onclick = function(){
+		settings.style.top = "50%";
+		settingsPrevent.style.display = "block"
+	}
+	
+	stockButton.onclick = function(){
+		mainStock.style.display = "block"
+	}
+	for(let a=0; a < document.querySelectorAll(".closeButton").length; a++){
+		document.querySelectorAll(".closeButton")[a].onclick = function(){
+			document.querySelectorAll(".closeButton")[a].parentElement.parentElement.style.display = "none"
+		}
+	}
+
+	exitFull.onclick = function(){document.exitFullscreen()}
+	editName.onclick = function(){
+		nameDiv.style.display = "block";
+	}
+	for(let a = 0; a < document.querySelectorAll(".inputNum").length; a++){
+		document.querySelectorAll(".inputNum")[a].oninput = function(){
+			if(this.value != ""){
+				if(this.value >= parseInt(this.max)){
+					this.value = parseInt(this.max);
+				}
+				else if(this.value <= 0){
+					this.value = 1
+				}
+			}
+		}
+	}
+	for(let a = 0; a < document.querySelectorAll(".decrease").length; a++){
+		document.querySelectorAll(".decrease")[a].onclick = function(){
+			if(parseInt(this.parentElement.querySelector("input").value) >= 2){
+				this.parentElement.querySelector("input").value--
+				if(a == 1){
+					this.parentElement.querySelector("[name='result']").innerHTML = parseInt(this.parentElement.querySelector("input").value)*(stockAssets.crops[stockFrame.children[1].innerHTML].toSeed)
+				}
+				if(parseInt(this.parentElement.querySelector("input").value) <= 1){
+					this.style.color = "#555"
+				}
+				this.parentElement.querySelector(".increase").style.color = "#fff"
+			}
+		}
+	}
+	for(let a = 0; a < document.querySelectorAll(".increase").length; a++){
+		document.querySelectorAll(".increase")[a].onclick = function(){
+			if(parseInt(this.parentElement.querySelector("input").value) + 1 <= parseInt(this.parentElement.querySelector("input").max)){
+				this.parentElement.querySelector("input").value++;
+				if(a ==1){
+					this.parentElement.querySelector("[name='result']").innerHTML = parseInt(this.parentElement.querySelector("input").value)*(stockAssets.crops[stockFrame.children[1].innerHTML].toSeed)
+				}
+				if(parseInt(this.parentElement.querySelector("input").value) == parseInt(this.parentElement.querySelector("input").max)){
+					this.style.color = "#555"
+				}
+				this.parentElement.querySelector(".decrease").style.color = "#fff"
+			}
+		}
+	}
+	deleteSure.querySelector(".butSec").children[0].onclick = function(){
+		this.parentElement.parentElement.parentElement.style.display = "none";
+	}
+	
+	document.getElementById("full").onclick = function(){
+		if(midH*2 != screen.height){document.documentElement.requestFullscreen()}
+		else{document.exitFullscreen()};
+	}
+	taskButton.onclick = function(){
+		goBack.style.display = "block";
+		market.style.scale = "100%";
+		market.style.opacity = "1";
+	}
+document.documentElement.requestFullscreen()
+	//-------------------------------------------------------------------------------------
+
+
+	function addStock(a, b, c){
+		if(a == 0){
+			if(data.stock.crops.length == 0){
+				e = [b, c];
+				data.stock.crops.push(e);
+			}
+			else{
+			for(let d = 0; d < data.stock.crops.length; d++){			
+				if(data.stock.crops[d][0] == b){
+					data.stock.crops[d][1] += c;
+					break;
+				}
+				else {
+					if(d == data.stock.crops.length-1){
+						e = [b, c];
+						data.stock.crops.push(e);
+						break;
+					}
+				}
+			}
+			}
+		}
+	}
+
+	//_________S__O__I__L______E__V__E__N__T__S________//
+	for(let a = 0; a < data.land.tile.length; a++){
+		grid = document.createElement("img");
+		grid.src = landType[data.land.tile[a][2]][data.land.tile[a][3]];
+		grid.setAttribute("class", "soil");
+		var tch = document.createElement("div");
+		tch.append(grid);
+		tch.onclick = function() {
+			goBack.style.display = "block";
+			items.style.right = "-30%";
+			footer.style.bottom = "-20vh";
+			cache.isSoil = true;
+				if(data.land.tile[a][4].seed != null){
+					if(cache.whatItem == null && cache.whatSeed == null){
+						cache.whatSoil = a;
+						if(data.land.tile[a][4].water){
+							soilLabel.children[3].style.opacity = "0"
+						}
+						else{
+							soilLabel.children[3].style.opacity = "1"
+						};
+						soilLabel.style.top = midH + (((-(data.land.tile[a][0]-dataNav[0])) + (data.land.tile[a][1] - dataNav[1]))+1)*28*dataNav[2];
+						soilLabel.style.left = midW + (((data.land.tile[a][0]-dataNav[0]) + (data.land.tile[a][1]-dataNav[1]))+1)*50*dataNav[2];
+						soilLabel.style.display = "block";
+					}
+				};
+				if(cache.whatSeed != null){
+					if(data.land.tile[a][4].seed == null){
+						for(let b = 0; b < data.stock.seed.length; b++){
+							if(data.stock.seed[b][0] == cache.whatSeed){
+								if(data.stock.seed[b][1] >= 1){
+								data.land.tile[a][4].seed = cache.whatSeed;
+								data.stock.seed[b][1]--;
+								if(data.stock.seed[b][1] != 1){
+									slotSeed.children[b].children[2].innerHTML = data.stock.seed[b][1];
+								}
+								else{slotSeed.children[b].children[2].innerHTML = ""}
+								
+								setSeed();
+								var woodSign = document.createElement("img");
+								woodSign.src = woodSignSrc;
+								woodSign.setAttribute("class", "woodSign");
+								var icon = document.createElement("img");
+								icon.src = stockAssets.crops[cache.whatSeed].src;
+								icon.setAttribute("class", "icon");
+								var plant = document.createElement("img");
+								plant.src = "";
+								plant.setAttribute("class", "plant");
+								frame4.children[a].append(woodSign, icon, plant);
+								soilLabel.children[4].style.display = "flex"
+
+								if(data.land.tile[a][4].water){timerStart()}
+								if(data.stock.seed[b][1] <= 0){
+									for(let n = 0; n < slotSeed.children.length; n++){
+										if(slotSeed.children[n].getAttribute("order") == cache.whatSeed){
+											slotSeed.children[n].remove();
+											if(data.stock.seed[b][0] == cache.whatSeed){
+												data.stock.seed.splice(b, 1)
+											}
+											cache.whatSeed = null;
+										}
+									}
+								}
+
+								fixStock();
+								}
+							}
+						};
+						
+						
+					}
+				};
+
+				if(cache.whatItem == 0){
+					if(!data.land.tile[a][4].water){
+						if(data.earn.water >= 1){
+							frame4.children[a].children[0].style.filter = "brightness(50%)";
+							data.earn.water--;
+							data.land.tile[a][4].water = true;
+							if(data.land.tile[a][4].seed != null){timerStart()}
+							watering.pause();
+							watering.currentTime = 0;
+							watering.play();
+						}
+						else{
+							remind("You don't have any water left")
+						}
+					}
+				}
+				else if(cache.whatItem == 1){
+					if(data.land.tile[a][4].fer == null){
+						if(data.earn.fer[data.act.whatFer] >= 1){
+							data.land.tile[a][4].fer = data.act.whatFer;
+							data.earn.fer[data.act.whatFer]--;
+							myAudio.pause();
+							myAudio.currentTime = 0;
+							myAudio.play();
+						}
+						else{
+							remind("Your current fertilizer has run out")
+						}
+					}
+				}
+				else if(cache.whatItem == 3){
+					if(data.land.tile[a][4].seed != null){
+						while(frame4.children[a].children[1]){
+							frame4.children[a].removeChild(frame4.children[a].children[1]);
+						}
+						data.land.tile[a][4].seed = null;
+						data.land.tile[a][4].water = false;
+						data.land.tile[a][4].start = null;
+						data.land.tile[a][4].fer = null;
+						frame4.children[a].children[0].style.filter = "brightness(100%)"
+					}
+				}
+				else if(cache.whatItem == 4){
+					if(data.land.tile[a][4].seed != null) {
+						if(data.land.tile[a][4].done == true){
+							if(data.earn.stock[0] <= data.earn.stock[1]-1){
+
+								while(frame4.children[a].children[1]){
+									frame4.children[a].removeChild(frame4.children[a].children[1]);
+								}
+								addStock(0, data.land.tile[a][4].seed, 1);
+								data.land.tile[a][4].fer = null;
+								data.land.tile[a][4].seed = null;
+								data.land.tile[a][4].water = false;
+								data.land.tile[a][4].start = null;
+								fixStock();
+							}
+							else{
+								remind("Your stock is full")
+							}
+						}
+					}
+
+				};
+				function timerStart() {
+					data.land.tile[a][4].start = Math.round((new Date().getTime())/1000);
+				}
+				frame3.style.opacity = 0.7;
+		};
+		tch.style.zIndex = 1;
+		frame4.append(tch);
+	}
+
+	for(let a = 0; a < data.land.sale.length; a++){
+		var gridOut = document.createElement("img");
+		gridOut.src = imgSrc + "supporter/grid_land.png";
+		gridSale.append(gridOut);
+	}
+	
+	function senCase(x){
+		return x.charAt(0).toUpperCase() + x.slice(1); 
+	}
+	function smallCase(x){
+		var b = "";
+		for(let a = 0; a < x.length; a++){
+			b += x.charAt(a).toLowerCase()
+		}
+		return b;
+	}
+	function setSeed(){
+		for(let a = 0; a < data.land.tile.length; a++){
+			if(data.land.tile[a][2] == 0){
+			}
+		}
+	}
+	setSeed();
+	
+	function fixSeedSlot(){
+		slotSeed.innerHTML = "";
+		for(let a = 0; a < data.stock.seed.length; a++){
+				var j = document.createElement("div");
+				j.setAttribute("order", data.stock.seed[a][0]);
+				var seedBg = document.createElement("img");
+				seedBg.src = imgSrc + "supporter/buto.png";
+				seedBg.class = "seedBg";
+				var temp = document.createElement("img");
+				temp.src = stockAssets.crops[data.stock.seed[a][0]].src;
+				var seedQuan = document.createElement("p");
+				if(data.stock.seed[a][1] == 1){
+					seedQuan.innerHTML = null
+				}
+				else{seedQuan.innerHTML = data.stock.seed[a][1]};
+				j.append(seedBg, temp, seedQuan);
+				j.style.border = "0px";		
+				slotSeed.append(j);
+		}
+	}
+	fixSeedSlot();
+
+	var mer = false;
+	function fixStock(){
+		categor = null;
+		oi = 0;
+		for(let a = 0; a < Object.keys(data.stock).length; a++){
+			for(let b = 0; b < Object.values(data.stock)[a].length; b++){
+				oi += Object.values(data.stock)[a][b][1];
+				if(Object.values(data.stock)[a][b][1] == 0){
+					Object.values(data.stock)[a].splice(b,1);
+				};
+			}
+		}
+		data.earn.stock[0] = oi;
+		if(data.earn.stock[0] == data.earn.stock[1]){
+			stockSize.children[1].style.background = "#f00";
+		}
+		else{
+			stockSize.children[1].style.background = "#de5"
+		}
+		stockSize.children[1].style.width = (data.earn.stock[0]/data.earn.stock[1])*100 + "%";
+		stockStorage.innerHTML = data.earn.stock[0] + " / " + data.earn.stock[1];
+		stockScreen.innerHTML = "";
+		for(let a = 0; a < Object.keys(data.stock).length; a++){
+			Object.values(data.stock)[a].sort(function(a,b){return a[0] - b[0]})
+			if(Object.values(data.stock)[a].length != 0){
+					if(mer == true){
+						line = document.createElement("div");
+						line.setAttribute("class", "line");
+						line.setAttribute("stock", Object.keys(data.stock)[a]);
+						stockScreen.append(line)
+					}
+
+				for(let b = 0; b < Object.values(data.stock)[a].length; b++){
+					
+					if(Object.keys(data.stock)[a] != "seed"){
+						categor = stockAssets[JSON.parse(JSON.stringify(Object.keys(data.stock)[a]))][data.stock[Object.keys(data.stock)[a]][b][0]].name
+					}
+					else {
+						categor = stockAssets["crops"][data.stock[Object.keys(data.stock)[a]][b][0]].name
+					}
+					var stockCon = document.createElement("div");
+					stockCon.setAttribute("class", "con");
+					stockCon.setAttribute("name", categor)					
+					stockCon.setAttribute("count", b);
+					var actual = document.createElement("img");
+					actual.setAttribute("class", "actual");
+					if(Object.keys(data.stock)[a] != "seed"){
+						actual.src = stockAssets[Object.keys(data.stock)[a]][data.stock[Object.keys(data.stock)[a]][b][0]].src;
+						stockCon.append(actual);
+					}
+					else{
+						var bg = document.createElement("img");
+						bg.src = imgSrc + "supporter/buto.png";
+						bg.style.filter = "brightness(50%)";
+						actual.src = stockAssets["crops"][data.stock.seed[b][0]].src;
+						actual.style.width = "40%";
+						stockCon.append(bg, actual);
+					}
+					var quan = document.createElement("p");
+					if(Object.values(data.stock)[a][b][1] >= 2){
+						quan.innerHTML = Object.values(data.stock)[a][b][1];
+					}
+					else{
+						quan.innerHTML = "";
+					}
+					stockCon.append(quan);
+					stockCon.onclick = function(){
+						stockFrame.children[1].innerHTML = Object.values(data.stock)[a][b][0];
+						if(stockFrame.querySelector("[unique='eto']")){
+							stockFrame.querySelector("[unique='eto']").remove();
+						}
+						
+						if(Object.keys(data.stock)[a] == "crops"){
+							conv = document.createElement("div");
+							conv.setAttribute("unique", "eto");
+							newBut = document.createElement("button");
+							newBut.innerHTML = "Convert to Seed";
+							conv.append(newBut);
+							conv.style.cssText = "margin-left: auto";
+							conv.onclick = function(){
+								var c = convertSeed;
+								c.querySelector("[name='result']").innerHTML = (data.stock.crops[b][1])*(stockAssets.crops[stockFrame.children[1].innerHTML].toSeed)
+								c.querySelector("[name='times']").innerHTML = "x" + (stockAssets.crops[stockFrame.children[1].innerHTML].toSeed)
+								c.querySelector(".decrease").style.color = "#fff";
+								c.querySelector(".increase").style.color = "#555";
+								c.querySelector("input").value = convertSeed.querySelector("input").max = data.stock.crops[b][1];
+								c.querySelectorAll("img")[0].src = stockFrame.querySelectorAll("img")[0].src;
+								c.style.display = "block";
+								c.querySelector("button").onclick = function(){
+									p = parseInt(c.querySelector("[name='result']").innerHTML);
+									q = data.earn.stock[0]+(p-parseInt(c.querySelector("input").value))
+									if(q <= data.earn.stock[1]){
+										data.stock.crops[b][1] -= parseInt(c.querySelector("input").value);
+										if(data.stock.seed.length >= 1){
+											for(let n = 0; n < data.stock.seed.length; n++){
+												if(data.stock.seed[n][0] == data.stock.crops[b][0]){
+													data.stock.seed[n][1] += p; break
+												}
+												else{
+													if(n == data.stock.seed.length - 1){
+														o = [data.stock.crops[a][0], p];
+														data.stock.seed.push(o); break
+													}
+												}
+											}
+										}
+										else {
+											o = [data.stock.crops[a][0], p];
+											data.stock.seed.push(o)
+										}
+										fixStock();
+										fixSeedSlot();
+									}
+									else{
+										remind("Dispose atleast <strong>" + (q - data.earn.stock[1]) + "</strong> any stocks")
+									};
+									convertSeed.style.display = "none";
+									stockFrame.style.display = "none";
+								}
+							}
+							stockFrame.querySelector(".butSec").prepend(conv)
+						}
+						
+						stockFrame.querySelector(".increase").style.color = "#555"
+						besh = stockFrame.children[0].children;
+						besh[1].innerHTML = senCase(Object.keys(data.stock)[a]);
+						besh[2].innerHTML = senCase(this.getAttribute("name"));
+						if(this.querySelector("p").innerHTML != ""){
+							besh[3].innerHTML = "Quantity: " + this.querySelector("p").innerHTML;
+							stockFrame.querySelector("input").value = stockFrame.querySelector("input").max = this.querySelector("p").innerHTML;
+						}
+						else {
+							besh[3].innerHTML = "Quantity: 1";
+							stockFrame.querySelector("input").value = stockFrame.querySelector("input").max = 1;
+						}
+						stockFrame.children[0].children[4].src = this.querySelector("img").src;
+						stockFrame.style.display = "block";
+						deleteSure.querySelector(".butSec").children[1].onclick = function(){
+							Object.values(data.stock)[a][b][1] -= parseInt(stockFrame.querySelector("input").value);
+							if(parseInt(stockFrame.querySelector("input").value) == parseInt(stockFrame.querySelector("input").max)){
+								Object.values(data.stock)[a].splice(b, 1) 
+							}
+		
+							fixStock();
+							fixSeedSlot();
+							stockFrame.style.display = deleteSure.style.display = "none";
+							document.querySelector("#discard").play();
+						}
+					}
+					trashButton.onclick = function(){
+						deleteSure.querySelector("p").innerHTML = "Are you sure you want to discard " + stockFrame.querySelector("input").value + " of it?"
+						deleteSure.style.display = "block"
+					}
+					
+					stockScreen.append(stockCon);
+				}
+				mer = true;
+
+			}
+			if(a == Object.keys(data.stock).length-1){
+				mer = false
+			}
+		}
+	}
+	fixStock();
+	
+	function remind(a){
+		reminderText.innerHTML = a;
+		reminder.style.display = "block"
+	}
+	
+	//              F  A  R  M --------- S  O  I  L ----------- I  T  E  M  S
+	var itemsCur = 70;
+	for(let a = 0; a < items.children.length - 1; a++){
+		items.children[a+1].children[0].src = itemsType[a];
+		items.children[a+1].style.left = 50+(Math.sin((90+((45*(itemsCur/100))*(a-2)))*rad)*40) + "%";
+		items.children[a+1].style.top = 50+(Math.cos((90+((45*(itemsCur/100))*(a-2)))*rad)*40) + "%";
+		items.children[a+1].onclick = function(){
+			soilLabel.style.display = "none";
+			if(a != cache.whatItem){
+				cache.whatItem = a
+			}
+			else{
+				cache.whatItem = null
+			};
+			cache.whatSeed = null;
+		}
+	}
+	
+	var d, e, f, g, h;
+	function anim(){
+	requestAnimationFrame(anim);
+		midW = window.innerWidth/2;
+		midH = window.innerHeight/2;
+		time = new Date().getTime()/1000;
+		
+		kunsul.innerHTML = window.innerHeight
+		
+		gamersName.innerHTML = data.name + "&nbsp";
+
+		if(window.getComputedStyle(nameDiv).display == "block"){
+			data.name = name.value;
+		}
+		else{
+			name.value = data.name
+		};
+		
+		
+		for(let a = 0; a < slotSeed.children.length; a++){
+			slotSeed.children[a].onclick = function(){
+				cache.whatItem = null;
+				if(cache.whatSeed == slotSeed.children[a].getAttribute("order")){
+					cache.whatSeed = null
+				}
+				else{
+					cache.whatSeed = slotSeed.children[a].getAttribute("order");
+				}
+			}
+		}
+		
+		for(let a = 0; a < data.land.tile.length; a++){
+			frame4.children[a].style.left = midW + ((data.land.tile[a][0]-dataNav[0]) + (data.land.tile[a][1]-dataNav[1]))*52.5*dataNav[2];
+			frame4.children[a].style.top = midH + ((-(data.land.tile[a][0]-dataNav[0])) + (data.land.tile[a][1] - dataNav[1]))*28*dataNav[2];
+			frame4.children[a].style.width = frame4.children[a].style.height = dataNav[2]*95 + "px";
+			if(data.land.tile[a][2] == 0){
+				if(data.land.tile[a][4].seed != null){
+					e = stockAssets.crops[data.land.tile[a][4].seed].growth;
+					if(!data.land.tile[a][4].start){
+						d = time;
+					}
+					else {
+						d = data.land.tile[a][4].start;
+					};
+					if(data.land.tile[a][4].fer == null){
+						g = Math.round(e - (time - d));
+					}
+					else{
+						g = Math.round(e - ((time - d)*(itemsType[1][data.land.tile[a][4].fer].boost)));
+					}
+				
+					if(g>=1){			
+						if(g>=3600){
+							if(g % 3600){
+								if((g%3600) >= 60){
+									f = (g-(g%3600))/3600 + "hr " + ((g%3600)- ((g%3600)%60))/60 + "m"
+								}
+								else {
+									f = (g-(g%3600))/3600 + "hr"
+								}
+							}
+							else{
+								f = g/3600 + "hr"
+							}
+						}
+						else if(g >= 60){
+							if(g%60){
+								f = (g-(g%60))/60 + "m " + g%60 + "s"
+							}
+							else{
+								f = g/60 + "m"
+							}
+						}
+						else{
+							f = g + "s"
+						}
+					}
+					else{
+						f = "Finished"
+					}
+					h = (((e-g) - ((((e - g)*4)%e)/4))*4) /e;
+		
+					if(h==0){
+						frame4.children[a].children[3].style.display = "none";
+						data.land.tile[a][4].done = false;
+					}
+					else if(h>=4){
+						h = 4;
+						data.land.tile[a][4].done = true;
+						frame4.children[a].children[0].style.filter = "brightness(100%)";
+						frame4.children[a].children[3].src = imgSrc + "progress/" + stockAssets.crops[data.land.tile[a][4].seed].name + "/" + h + ".png";
+					}
+					else {
+						frame4.children[a].children[3].style.display = "block";
+						data.land.tile[a][4].done = false;
+						frame4.children[a].children[3].src = imgSrc + "progress/" + stockAssets.crops[data.land.tile[a][4].seed].name + "/" + h + ".png";
+					}
+				
+				if(a == cache.whatSoil){
+					timeSeed.innerHTML = f;
+					if(data.land.tile[a][4].fer == null){
+						ferShine.style.opacity = 0;
+						ferShine.src = "";
+					}
+					else{
+						ferShine.style.opacity = 1;
+						ferShine.src = labelShine[data.land.tile[a][4].fer];
+					}
+
+					if(g == e){
+						timeSeed.style.color = "gray";
+						soilLabel.children[4].style.display = "flex";
+					}
+					else if(g <= e){
+						if(g>=1){
+							timeSeed.style.color = "white";
+							soilLabel.children[4].style.display = "flex";
+						}
+						else{
+							timeSeed.style.color = "rgb(0, 255, 0)";
+							soilLabel.children[4].style.display = "none";
+						}
+					};
+				}
+				}
+			}
+		}
+		
+		
+		if(cache.whatItem != null){
+			items.children[0].style.left = -50+(Math.sin((90+((45*(itemsCur/100))*(cache.whatItem-2)))*rad)*40) + "%";
+			items.children[0].style.top = 50+(Math.cos((90+((45*(itemsCur/100))*(cache.whatItem-2)))*rad)*40) + "%";
+			items.children[0].style.display = "block";
+		}
+		else {items.children[0].style.display = "none"};
+
+		items.children[2].children[0].src = itemsType[1][data.act.whatFer].src;
+		
+		for(let a = 0; a < data.land.sale.length; a++){
+			gridSale.children[a].style.left = midW + (((data.land.sale[a][0]*3.05)-dataNav[0]) + ((data.land.sale[a][1]*3)-dataNav[1]))*50*dataNav[2];
+			gridSale.children[a].style.top = midH + ((-((data.land.sale[a][0]*3.05)-dataNav[0])) + ((data.land.sale[a][1]*3) - dataNav[1]))*28*dataNav[2];
+			gridSale.children[a].style.width = dataNav[2]*320 + "px";
+		}
+		
+		for(let a = 0; a < farmMap.children.length; a++){
+			farmMap.children[a].style.left = midW + ((-dataNav[0] -dataNav[1])+0.3)*50*dataNav[2];
+			farmMap.children[a].style.top = midH + ((dataNav[0] - dataNav[1])-1.6)*28*dataNav[2];
+			farmMap.children[a].style.width = dataNav[2]*1350 + "px";
+		}
+		for(let a = 0; a < data.stock.seed.length; a++){
+
+			if(data.stock.seed[a][0] == cache.whatSeed){
+				slotSeed.children[a].style.background = "green"
+			}
+			else{
+				slotSeed.children[a].style.background = ""
+			}
+	
+		}
+		
+		magicText.innerHTML = data.earn.magic;
+		moneyText.innerHTML = data.earn.money;
+		waterText.innerHTML = data.earn.water;
+		ferText.innerHTML = data.earn.fer[data.act.whatFer];
+		pestText.innerHTML = data.earn.pest;
+				
+		document.getElementById("full").innerHTML = dataAct.whatItem;
+		
+		if(cache.isSoil){
+			plantSeed.style.top = "50%";
+		}
+		else{
+			plantSeed.style.top = "200%";
+		};
+
+		for(let a = 0; a < document.querySelectorAll(".sound").length; a++){
+			document.querySelectorAll(".sound")[a].volume = document.querySelector("#sound").value/100;
+		}
+	};
+	anim();
+	
+	var sx1, sy1, mx1, my1, old1 = dataNav[0], old2 = dataNav[1];
+	var sx2, sy2, mx2, my1, diffX, diffY, sDiff, mDiff, old3 = dataNav[2], no1 = false;
+	frame4.ontouchstart = function(ev){
+	soilLabel.style.display = "none";
+		if(ev.touches.length == 1){
+			sx1 = mx1 = ev.touches[0].clientX;
+			sy1 = my1 = ev.touches[0].clientY;
+		}
+		else if(ev.touches.length == 2){
+			sx1 = mx1 = ev.touches[0].clientX;
+			sy1 = my1 = ev.touches[0].clientY;
+			sx2 = mx2 = ev.touches[1].clientX;
+			sy2 = my2 = ev.touches[1].clientY;
+			diffX = Math.abs(sx2 - sx1);
+			diffY = Math.abs(sy2 - sy1);
+			sDiff = mDiff = Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
+			no1 = true;
+		}
+	}
+	frame4.ontouchmove = function(ev){
+	soilLabel.style.display = "none";
+		if(ev.touches.length == 1 && !no1){
+			mx1 = ev.touches[0].clientX;
+			my1 = ev.touches[0].clientY;
+			dataNav[0] =  old1 + (- (mx1 - sx1) + (my1 - sy1))*0.01*(1/dataNav[2]);
+			dataNav[1] =  old2 + (- (mx1 - sx1) - (my1 - sy1))*0.01*(1/dataNav[2]);
+		}
+		else if(ev.touches.length == 2){
+			mx1 = ev.touches[0].clientX;
+			mx2 = ev.touches[1].clientX;
+			diffX = Math.abs(mx2 - mx1);
+			my1 = ev.touches[0].clientY;
+			my2 = ev.touches[1].clientY;
+			diffY = Math.abs(my2 - my1);
+			mDiff = Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
+			max = 1.5;
+			min = 0.6;
+			if((dataNav[2] >= max-0.1) && (mDiff >= sDiff)){
+				dataNav[2] = max;
+			}
+			else if((dataNav[2] <= min+0.1) && (mDiff <= sDiff)){
+				dataNav[2] = min;
+			}
+			else{
+				dataNav[2] = old3 * (mDiff/sDiff);
+			}
+		}
+	}
+	frame4.ontouchend = function(ev){
+		old1 = dataNav[0];
+		old2 = dataNav[1];
+		old3 = dataNav[2];
+		if(ev.touches.length == 0){
+			no1 = false;
+		}
+	}
+	frame4.onmousewheel = function(ev) {
+		dataNav[2] += ev.deltaY*0.001;
+	}
+
+	window.onload = function(){introFrame.style.display = "none"};
+	kunsul.innerHTML += window.getComputedStyle(nameDiv).display
+</script>
